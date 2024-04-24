@@ -14,15 +14,12 @@ from pathlib import Path
 from decouple import Config, RepositoryEnv
 from datetime import timedelta
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6yc+ix=a^4dqja2afx%r(&$hi&p_r9bvhpj&&d+zb9u^qpp9q4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -85,6 +82,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 ENVPATH = BASE_DIR / '.env'
 
 config = Config(RepositoryEnv(ENVPATH))
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = config('S_SECRET_KEY', default='')
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -120,9 +121,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = config('LANGUAGE_CODE', default='')
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = config('TIME_ZONE', default='')
 
 USE_I18N = True
 
@@ -138,10 +139,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 AUTH_USER_MODEL = 'users.User'
-# LOGIN_REDIRECT_URL = '/'
-# LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'users:user-login'
 
 # параметры email to send
@@ -194,4 +194,3 @@ CORS_ALLOW_ALL_ORIGINS = False
 # ключи оплаты через https://stripe.com
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', default='')
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY', default='')
-
