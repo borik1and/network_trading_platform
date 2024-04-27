@@ -1,11 +1,13 @@
 from django.db import models
 from django.utils import timezone
 
+from factory.models import Factory_contacts
+
 NULLABLE = {'blank': True, 'null': True}
 
 
-class Factory_contacts(models.Model):
-    factory_name = models.CharField(max_length=100, default='', verbose_name='Название завода')
+class Entrepreneur_contacts(models.Model):
+    retail_network_name = models.CharField(max_length=100, default='', verbose_name='Имя предпринимателя')
     email = models.EmailField(**NULLABLE)
     country = models.CharField(max_length=100, default='', verbose_name='страна')
     city = models.CharField(max_length=100, default='', verbose_name='город')
@@ -13,14 +15,14 @@ class Factory_contacts(models.Model):
     house_number = models.CharField(max_length=100, default=0, verbose_name='номер дома')
 
     def __str__(self):
-        return self.factory_name
+        return self.retail_network_name
 
     class Meta:
         verbose_name = 'Контакт'
         verbose_name_plural = 'Контакты'
 
 
-class Factory_product(models.Model):
+class Entrepreneur_product(models.Model):
     name = models.CharField(max_length=100, verbose_name='Имя продукта')
     model = models.CharField(max_length=100, verbose_name='Модель')
     date_launch = models.DateField(verbose_name='дата выхода продукта на рынок')
