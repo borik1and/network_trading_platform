@@ -15,4 +15,4 @@ class User(AbstractUser):
     is_active = models.BooleanField(default=True, verbose_name='Активный')
 
     def __str__(self):
-        return f'{self.username}{self.role}'
+        return f'{self.username}{self.email}'
