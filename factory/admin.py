@@ -1,3 +1,12 @@
 from django.contrib import admin
+from factory.models import Factory_contacts, Factory_product
 
-# Register your models here.
+
+@admin.register(Factory_contacts)
+class FactoryContactsAdmin(admin.ModelAdmin):
+    list_display = ('factory_name', 'email', 'country', 'city', 'street', 'house_number')
+
+
+@admin.register(Factory_product)
+class FactoryProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'model', 'date_launch', 'provider', 'creation_date')
