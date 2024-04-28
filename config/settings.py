@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'users',
     'factory',
     'retail_network',
+    'entrepreneur',
 
 ]
 
