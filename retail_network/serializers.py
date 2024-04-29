@@ -11,4 +11,4 @@ class RetailNetworkContactsSerializer(serializers.ModelSerializer):
 class RetailNetworkProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Retail_network_product
-        fields = '__all__'
+        exclude = ['debt_to_supplier']

@@ -12,4 +12,4 @@ class FactoryContactsSerializer(serializers.ModelSerializer):
 class FactoryProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Factory_product
-        fields = '__all__'
+        exclude = ['debt_to_supplier']

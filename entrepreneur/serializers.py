@@ -12,4 +12,7 @@ class EntrepreneurContactsSerializer(serializers.ModelSerializer):
 class EntrepreneurProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Entrepreneur_product
-        fields = '__all__'
+        exclude = ['debt_to_supplier']
+
+
+

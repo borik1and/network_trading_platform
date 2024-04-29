@@ -1,4 +1,3 @@
-
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from entrepreneur.models import Entrepreneur_contacts, Entrepreneur_product
