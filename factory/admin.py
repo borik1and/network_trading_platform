@@ -10,4 +10,4 @@ class FactoryContactsAdmin(admin.ModelAdmin):
 
 @admin.register(Factory_product)
 class FactoryProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'model', 'date_launch', 'provider', 'creation_date')
+    list_display = ('name', 'model', 'date_launch', 'provider', 'creation_date', 'debt_to_supplier')

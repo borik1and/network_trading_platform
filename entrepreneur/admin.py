@@ -11,4 +11,4 @@ class EntrepreneurContactsAdmin(admin.ModelAdmin):
 
 @admin.register(Entrepreneur_product)
 class EntrepreneurProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'model', 'date_launch', 'provider', 'creation_date')
+    list_display = ('name', 'model', 'date_launch', 'provider', 'creation_date', 'debt_to_supplier')
