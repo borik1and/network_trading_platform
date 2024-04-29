@@ -6,6 +6,7 @@ from entrepreneur.models import Entrepreneur_contacts, Entrepreneur_product
 @admin.register(Entrepreneur_contacts)
 class EntrepreneurContactsAdmin(admin.ModelAdmin):
     list_display = ('retail_network_name', 'email', 'country', 'city', 'street', 'house_number')
+    list_filter = ('country',)
 
 
 @admin.register(Entrepreneur_product)

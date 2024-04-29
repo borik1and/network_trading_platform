@@ -6,6 +6,7 @@ from retail_network.models import Retail_network_contacts, Retail_network_produc
 @admin.register(Retail_network_contacts)
 class RetailNetworkContactsAdmin(admin.ModelAdmin):
     list_display = ('retail_network_name', 'email', 'country', 'city', 'street', 'house_number')
+    list_filter = ('country',)
 
 
 @admin.register(Retail_network_product)
