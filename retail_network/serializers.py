@@ -1,14 +1,8 @@
 from rest_framework import serializers
-from retail_network.models import Retail_network_contacts, Retail_network_product
+from retail_network.models import RetailNetwork
 
 
-class RetailNetworkContactsSerializer(serializers.ModelSerializer):
+class RetailNetworkSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Retail_network_contacts
-        fields = '__all__'
-
-
-class RetailNetworkProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Retail_network_product
+        model = RetailNetwork
         exclude = ['debt_to_supplier']

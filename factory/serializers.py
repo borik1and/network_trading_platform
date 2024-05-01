@@ -1,15 +1,9 @@
 from rest_framework import serializers
 
-from factory.models import Factory_contacts, Factory_product
+from factory.models import Factory
 
 
-class FactoryContactsSerializer(serializers.ModelSerializer):
+class FactorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Factory_contacts
-        fields = '__all__'
-
-
-class FactoryProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Factory_product
+        model = Factory
         exclude = ['debt_to_supplier']

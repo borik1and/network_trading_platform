@@ -1,18 +1,14 @@
 from rest_framework import serializers
 
-from entrepreneur.models import Entrepreneur_contacts, Entrepreneur_product
+from entrepreneur.models import Entrepreneur
 
 
-class EntrepreneurContactsSerializer(serializers.ModelSerializer):
+class EntrepreneurSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Entrepreneur_contacts
-        fields = '__all__'
-
-
-class EntrepreneurProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Entrepreneur_product
+        model = Entrepreneur
         exclude = ['debt_to_supplier']
+
+
 
 
 
