@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from retail_network.models import Retail_network_contacts, Retail_network_product
+from retail_network.models import RetailNetwork
 
 
 def clear_debt_to_supplier(self, request, queryset):
@@ -10,15 +10,13 @@ def clear_debt_to_supplier(self, request, queryset):
 clear_debt_to_supplier.short_description = "Очистить задолженность перед поставщиком"
 
 
-@admin.register(Retail_network_contacts)
-class RetailNetworkContactsAdmin(admin.ModelAdmin):
-    list_display = ('retail_network_name', 'email', 'country', 'city', 'street', 'house_number')
+@admin.register(RetailNetwork)
+class RetailNetworkAdmin(admin.ModelAdmin):
+    list_display = (
+        'name_contact', 'email', 'country', 'city', 'street', 'house_number', 'name_product', 'model', 'date_launch',
+        'creation_date', 'debt_to_supplier', 'provider'
+    )
     list_filter = ('country',)
-
-
-@admin.register(Retail_network_product)
-class RetailNetworkProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'model', 'date_launch', 'provider', 'creation_date', 'debt_to_supplier')
 
     def link_to_provider(self, obj):
         try:
