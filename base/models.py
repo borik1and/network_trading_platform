@@ -1,9 +1,11 @@
 from django.db import models
 from django.utils import timezone
 
+NULLABLE = {'blank': True, 'null': True}
+
 
 class BaseContacts(models.Model):
-    name = models.CharField(max_length=100, default='', verbose_name='Имя')
+    name_contact = models.CharField(max_length=100, default='', verbose_name='Имя контакта')
     email = models.EmailField(**NULLABLE)
     country = models.CharField(max_length=100, default='', verbose_name='Страна')
     city = models.CharField(max_length=100, default='', verbose_name='Город')
@@ -15,7 +17,7 @@ class BaseContacts(models.Model):
 
 
 class BaseProduct(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Имя продукта')
+    name_product = models.CharField(max_length=100, verbose_name='Имя продукта')
     model = models.CharField(max_length=100, verbose_name='Модель')
     date_launch = models.DateField(verbose_name='Дата выхода продукта на рынок')
     debt_to_supplier = models.DecimalField(max_digits=20, decimal_places=2, default=0,

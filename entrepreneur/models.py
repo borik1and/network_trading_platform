@@ -1,39 +1,14 @@
+from base.models import BaseContacts, BaseProduct
 from django.db import models
-from django.utils import timezone
 
-from factory.models import Factory_contacts
+from factory.models import Factory
 
 NULLABLE = {'blank': True, 'null': True}
 
 
-class Entrepreneur_contacts(models.Model):
-    retail_network_name = models.CharField(max_length=100, default='', verbose_name='Имя предпринимателя')
-    email = models.EmailField(**NULLABLE)
-    country = models.CharField(max_length=100, default='', verbose_name='страна')
-    city = models.CharField(max_length=100, default='', verbose_name='город')
-    street = models.CharField(max_length=100, default='', verbose_name='улица')
-    house_number = models.CharField(max_length=100, default=0, verbose_name='номер дома')
-
-    def __str__(self):
-        return self.retail_network_name
+class Entrepreneur(BaseContacts, BaseProduct):
+    provider = models.ForeignKey(Factory, verbose_name='Поставщик', on_delete=models.CASCADE, default='')
 
     class Meta:
-        verbose_name = 'Контакт'
-        verbose_name_plural = 'Контакты'
-
-
-class Entrepreneur_product(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Имя продукта')
-    model = models.CharField(max_length=100, verbose_name='Модель')
-    date_launch = models.DateField(verbose_name='дата выхода продукта на рынок')
-    provider = models.ForeignKey(Factory_contacts, verbose_name='Поставщик', on_delete=models.CASCADE)
-    debt_to_supplier = models.DecimalField(max_digits=20, decimal_places=2, default=0,
-                                           verbose_name='Задолженность перед поставщиком')
-    creation_date = models.DateTimeField(default=timezone.now, verbose_name='Время создания')
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Продукт'
-        verbose_name_plural = 'Продукты'
+        verbose_name = 'индивидуальный предприниматель'
+        verbose_name_plural = 'индивидуальный предприниматели'
