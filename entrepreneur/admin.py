@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from rest_framework.reverse import reverse
 
 from entrepreneur.models import Entrepreneur
 
@@ -15,7 +16,7 @@ clear_debt_to_supplier.short_description = "Очистить задолженн�
 class EntrepreneurContactsAdmin(admin.ModelAdmin):
     list_display = (
         'name_contact', 'email', 'country', 'city', 'street', 'house_number', 'name_product', 'model', 'date_launch',
-        'creation_date', 'debt_to_supplier', 'provider'
+        'creation_date', 'debt_to_supplier', 'link_to_provider',
     )
 
     list_filter = ('country',)
@@ -24,13 +25,13 @@ class EntrepreneurContactsAdmin(admin.ModelAdmin):
         try:
             provider = obj.provider
             if provider:
-                return format_html('<a href="{0}/{1}/">{1}</a>',
-                                   '/admin/entrepreneur/entrepreneur', provider)
+                url = reverse("admin:factory_factory_change", args=[provider.id])
+                return format_html('<a href="{}">{}</a>', url, provider.name_contact)
         except Exception as e:
             pass
         return None
 
-    link_to_provider.short_description = 'Поставщик'
+    link_to_provider.short_description = 'ссылка на «Поставщика'
     link_to_provider.allow_tags = True
 
-    actions = [clear_debt_to_supplier]  # Добавляем действие к списку действий модели Entrepreneur_product
+    actions = [clear_debt_to_supplier]
