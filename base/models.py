@@ -12,6 +12,9 @@ class BaseContacts(models.Model):
     street = models.CharField(max_length=100, default='', verbose_name='Улица')
     house_number = models.CharField(max_length=100, default=0, verbose_name='Номер дома')
 
+    def __str__(self):
+        return self.name_contact
+
     class Meta:
         abstract = True
 
@@ -23,6 +26,9 @@ class BaseProduct(models.Model):
     debt_to_supplier = models.DecimalField(max_digits=20, decimal_places=2, default=0,
                                            verbose_name='Задолженность перед поставщиком')
     creation_date = models.DateTimeField(default=timezone.now, verbose_name='Время создания')
+
+    def __str__(self):
+        return self.name_product
 
     class Meta:
         abstract = True
