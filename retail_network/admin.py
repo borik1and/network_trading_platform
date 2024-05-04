@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from rest_framework.reverse import reverse
+
 from retail_network.models import RetailNetwork
 
 
@@ -22,13 +24,13 @@ class RetailNetworkAdmin(admin.ModelAdmin):
         try:
             provider = obj.provider
             if provider:
-                return format_html('<a href="{0}/{1}/">{1}</a>',
-                                   '/admin/retail_network/retail-network-product', provider)
+                url = reverse("admin:factory_factory_change", args=[provider.id])
+                return format_html('<a href="{}">{}</a>', url, provider.name_contact)
         except Exception as e:
             pass
         return None
 
-    link_to_provider.short_description = 'Поставщик'
+    link_to_provider.short_description = 'ссылка на «Поставщика'
     link_to_provider.allow_tags = True
 
     actions = [clear_debt_to_supplier]
