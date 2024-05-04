@@ -16,7 +16,7 @@ clear_debt_to_supplier.short_description = "Очистить задолженн�
 class RetailNetworkAdmin(admin.ModelAdmin):
     list_display = (
         'name_contact', 'email', 'country', 'city', 'street', 'house_number', 'name_product', 'model', 'date_launch',
-        'creation_date', 'debt_to_supplier', 'provider'
+        'creation_date', 'debt_to_supplier', 'link_to_provider',
     )
     list_filter = ('country',)
 
